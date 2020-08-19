@@ -62,18 +62,20 @@ public class DotsValidator {
                 }
         }
 
-        // перевірка на те чи не ставиться 1 точка повторно, в цьому нам допоможе попередня і ця перевірка
-        x = pairList.get(0).x;
-        y = pairList.get(0).y;
+        // перевірка на те чи не ставиться 1 точка повторно
+        for (int j = 0; j < pairList.size(); j++) {
+            x = pairList.get(j).x;
+            y = pairList.get(j).y;
 
-        for (int i = 1; i < pairList.size(); i++) {
-            if (x == pairList.get(i).x && y == pairList.get(i).y)
-                try {
-                    throw new LackOfCornersException();
-                } catch (LackOfCornersException e) {
-                    e.printStackTrace();
-                    return false;
-                }
+            for (int i = j + 1; i < pairList.size(); i++) {
+                if (x == pairList.get(i).x && y == pairList.get(i).y)
+                    try {
+                        throw new LackOfCornersException();
+                    } catch (LackOfCornersException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+            }
         }
 
         // остання точка повинна лежати навпроти першої

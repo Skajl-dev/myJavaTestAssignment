@@ -117,9 +117,80 @@ public class DotsValidator {
             }
         }
 
+      // 121 - 191 - перевірка на те чи не перетинаються стіни , відбувається заповнення ліній
+       //між точками значеннями та перевіркою чи не пробує інша лінія змінити уже встановленні значення
 
+        int test[][] = new int[Pair.getMaxValue() + 1][Pair.getMaxValue() + 1];
+        for (Pair pair : pairList) {
+            for (int i = 0; i < test.length; i++) {
+                for (int j = 0; j < test.length; j++) {
+                    test[pair.x][pair.y] = 200;
+                }
+            }
 
+        }
 
+        int counter = 1;
+        for (int i = 0; i < pairList.size(); i++) {
+
+            if (counter == (pairList.size() - 1))
+                counter = 0;
+
+            if (pairList.get(i).x == pairList.get(counter).x) {
+                int from = pairList.get(i).y;
+                int to = pairList.get(counter).y;
+
+                if (from > to) {
+                    int z = to;
+                    to = from;
+                    from = z;
+                }
+
+                for (int j = from; j <= to; j++) {
+                    if (test[pairList.get(i).x][j] == 200)
+                        continue;
+                    if (test[pairList.get(i).x][j] == 300) {
+                        try {
+                            throw new WallsIntersectException();
+                        } catch (WallsIntersectException e) {
+                            e.printStackTrace();
+                            return false;
+                        }
+                    }
+
+                    test[pairList.get(i).x][j] = 300;
+                }
+            }
+
+            if (pairList.get(i).y == pairList.get(counter).y) {
+                int from = pairList.get(i).x;
+                int to = pairList.get(counter).x;
+
+                if (from > to) {
+                    int z = to;
+                    to = from;
+                    from = z;
+                }
+
+                for (int j = from; j <= to; j++) {
+                    if (test[j][pairList.get(i).y] == 200)
+                        continue;
+                    if (test[j][pairList.get(i).y] == 300) {
+
+                        try {
+                            throw new WallsIntersectException();
+                        } catch (WallsIntersectException e) {
+                            e.printStackTrace();
+                            return false;
+                        }
+                    }
+
+                    test[j][pairList.get(i).y] = 300;
+
+                }
+            }
+            counter++;
+        }
 
 
 // якщо пройдені всі провірки то прямокутник пройшов тест

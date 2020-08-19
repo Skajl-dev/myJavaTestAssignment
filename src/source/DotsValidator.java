@@ -44,7 +44,6 @@ public class DotsValidator {
                 return false;
             }
 
-
         /* перевіряємо чи сформувався у нас прямокутник. перевірка буде пройдена, якщо кожного разу одне з значень пари буде
         збігатись з значенням з попередньої (90 градусів кут) */
         x = pairList.get(0).x;
@@ -76,24 +75,6 @@ public class DotsValidator {
                     return false;
                 }
         }
-
-
-        // для того щоб рух був по годинниковій стрілці, поворот вправо повинен бути в найвищій точці y
-        int maxY = Pair.getMaxY();
-        int[] arr = new int[2]; // може бути тільки 2 найвищі точки
-        int count = 0;
-        for (Pair pair : pairList) {
-            if (maxY == pair.y) {
-                arr[count++] = pair.x;
-            }
-        }
-        if (arr[0] > arr[1])
-            try {
-                throw new NOTClockwiseGoingException();
-            } catch (NOTClockwiseGoingException e) {
-                e.printStackTrace();
-                return false;
-            }
 
         // остання точка повинна лежати навпроти першої
         if (pairList.get(0).x != pairList.get(pairList.size() - 1).x && pairList.get(0).y != pairList.get(pairList.size() - 1).y) {

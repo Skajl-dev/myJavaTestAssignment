@@ -87,4 +87,7 @@ public class CartesianGrid {
     }
 
 
+    public int[][] getArray() {
+        return array;
+    }
 }

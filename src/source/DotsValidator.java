@@ -89,14 +89,6 @@ public class DotsValidator {
             }
         }
 
-        // якщо мін. значення y буде нижче значення y початкової пари, то ми йдемо не по часовій стрілці
-        if (Pair.getMinY() < pairList.get(0).y)
-            try {
-                throw new NOTClockwiseGoingException();
-            } catch (NOTClockwiseGoingException e) {
-                e.printStackTrace();
-                return false;
-            }
 
         // для того щоб рух був по годинниковій стрілці, поворот вправо повинен бути в найвищій точці y
         int maxY = Pair.getMaxY();
@@ -124,6 +116,10 @@ public class DotsValidator {
                 return false;
             }
         }
+
+
+
+
 
 
 // якщо пройдені всі провірки то прямокутник пройшов тест

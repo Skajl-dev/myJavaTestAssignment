@@ -7,9 +7,6 @@ public class Pair {
     private static int maxY = 0;
     private static int minY = 214748364;
 
-
-
-
     public Pair(int x, int y) {
         this.x = x;
         this.y = y;

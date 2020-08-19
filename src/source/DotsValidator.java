@@ -78,18 +78,6 @@ public class DotsValidator {
         }
 
 
-        /* перевіряємо на те, чи розміщені точки в годинниковому порядку, якщо х останнього елемента буде > за х першого
-        то така послідовність буде нарушеною */
-        if (pairList.get(0).x > pairList.get(pairList.size() - 1).x) {
-            try {
-                throw new NOTClockwiseGoingException();
-            } catch (NOTClockwiseGoingException e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
-
-
         // для того щоб рух був по годинниковій стрілці, поворот вправо повинен бути в найвищій точці y
         int maxY = Pair.getMaxY();
         int[] arr = new int[2]; // може бути тільки 2 найвищі точки

@@ -78,7 +78,7 @@ public class DotsValidator {
             }
         }
 
-        // остання точка повинна лежати навпроти першої
+        // остання точка повинна лежати навпроти першої по одній із осей
         if (pairList.get(0).x != pairList.get(pairList.size() - 1).x && pairList.get(0).y != pairList.get(pairList.size() - 1).y) {
             try {
                 throw new LackOfCornersException();
@@ -161,9 +161,9 @@ public class DotsValidator {
             }
             counter++;
         }
+
         // якщо пройдені всі провірки то прямокутник пройшов тест
         return true;
     }
-
 
 }

@@ -13,16 +13,16 @@ public class Main {
         if (args.length > 0 && args[0].equals("-d")) { // видалення файла по id. треба запустити програму з параметром -d (delete)
             String fileName = "";
             String deletedLine = "";
+            System.out.println("Enter full file path of file where rooms are stored: ");
+            try {
+                fileName = reader.readLine(); // введення шляху до файлу в якому зберігаються розміри кімнат
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("Enter id of room to be deleted: ");
             int id = -7;
             try {
                 id = Integer.parseInt(reader.readLine()); // ввід айді для подальшого видалення елементу з таким айді
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Enter full file path of file where rooms are stored: ");
-            try {
-                fileName = reader.readLine(); // введення шляху до файлу в якому зберігаються розміри кімнат
             } catch (IOException e) {
                 e.printStackTrace();
             }
